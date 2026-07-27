@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-bg text-ink font-body antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: #ff4c82;
+    color: #fff;
+  }
+  a {
+    @apply text-brand transition-colors;
+  }
+  a:hover {
+    @apply text-brand-hover;
+  }
+}
+
+@layer utilities {
+  /* ── Scrollbar ─────────────────────────────────────────── */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FFF5F7;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #FF8FA3, #FF4C82);
+    border-radius: 999px;
+    border: 2px solid #FFF5F7;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #FF4C82, #e23c6f);
+  }
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #FF8FA3 #FFF5F7;
+  }
+
+  /* Keyframes carried over verbatim from the source design file so
+     ambient motion matches pixel-for-pixel. */
+  @keyframes floatY2 {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-24px);
+    }
+  }
+  @keyframes letterIn {
+    from {
+      opacity: 0;
+      transform: translateY(46px);
+      filter: blur(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+  @keyframes wordDrift {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(0, -8px);
+    }
+  }
+  @keyframes breathe {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.025);
+    }
+  }
+  .animate-wordDrift {
+    animation: wordDrift 9s ease-in-out infinite;
+  }
+  .animate-letterIn {
+    animation: letterIn 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #ffdce6;
+    border-radius: 999px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+}
